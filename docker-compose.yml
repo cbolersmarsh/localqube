@@ -1,8 +1,8 @@
 version: "3.7"
 
 services:
-  localqube:
-    image: sonarqube:9.3-community
+  sonarqube:
+    image: sonarqube
     ports:
       - "9000:9000"
     networks:

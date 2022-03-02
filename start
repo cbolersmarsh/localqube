@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "Creating a network..."
+docker network create sonarqube_network
+
+echo "Starting up postgres..."
+docker run --name postgres  -e POSTGRES_USER=root -e POSTGRES_PASSWORD=Test12345  -p 5432:5432 --network sonarqube_network -d postgres
+
+
+echo "Starting up sonar..."
+docker run -d --name sonarqube   -p 9000:9000  -e sonar.jdbc.url=jdbc:postgresql://postgres/postgres  -e sonar.jdbc.username=root -e sonar.jdbc.password=Test12345  --network sonarqube_network sonarqube
+
+echo "Sonar is available at http://localhost:9000"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Stopping sonar..."
+docker stop sonarqube
+docker rm sonarqube
+
+echo "Stopping postgres..."
+docker stop postgres
+docker rm postgres
+
+echo "Removing the sonar network..."
+docker network rm sonarqube_network
+
+echo "Done."
